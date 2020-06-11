@@ -1,0 +1,43 @@
+﻿<dx:ThemedWindow x:Class="MEDIDEA.UI.MainWindow"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+        xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:local="clr-namespace:MEDIDEA.UI"
+        xmlns:customer="clr-namespace:MEDIDEA.UI.Customer"
+        mc:Ignorable="d" Loaded="{DXEvent OnLoaded()}"
+        Title="MainWindow">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DXMessageBoxService/>
+        <dxmvvm:NotificationService x:Name="notificationService" 
+                                    UseWin8NotificationsIfAvailable="False">
+        </dxmvvm:NotificationService>
+    </dxmvvm:Interaction.Behaviors>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ItemTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <dxwui:HamburgerMenu ItemsSource="{Binding HamburgerMenuItems}"
+                         BottomBarItemsSource="{Binding HamburgerMenuBottomBarItems}"
+                         OpenPaneWidth="200"
+                         SelectedItem="{Binding HamburgerMenuSelectedItem, Mode=TwoWay}"
+                         NavigationTarget="{Binding ElementName=service}" >
+        <dxwui:HamburgerMenu.Content>
+            <dxwui:NavigationFrame Padding="10,0,0,0" AnimationType="None">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxwuin:FrameNavigationService x:Name="service" />
+                </dxmvvm:Interaction.Behaviors>
+            </dxwui:NavigationFrame>
+        </dxwui:HamburgerMenu.Content>        
+    </dxwui:HamburgerMenu>
+</dx:ThemedWindow>

@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+                    xmlns:local="clr-namespace:MEDIDEA.UI">
+    <dx:BoolToObjectConverter x:Key="BooleanToHamburgetMenuItemPlacementConverter" 
+                              TrueValue="Bottom" 
+                              FalseValue="Top"/>
+    <dx:BoolToObjectConverter x:Key="BooleanToHamburgerMenuBottomBarItemPlacementConverter"
+                              TrueValue="Right"
+                              FalseValue="Left"/>
+
+    <DataTemplate DataType="{x:Type local:NavigationItemModel}">
+        <dxwui:HamburgerMenuNavigationButton Content="{Binding Content}"
+                                             Glyph="{Binding Glyph}"
+                                             RightContent="{Binding RightContent}"
+                                             SelectOnClick="{Binding SelectOnClick}"
+                                             Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgetMenuItemPlacementConverter}}"
+                                             IsSelected="{Binding IsSelected}"
+                                             NavigationTargetType="{Binding NavigationTarget}"
+                                             NavigationTargetTypeName="{Binding NavigationTargetName}"
+                                             NavigationTargetParameter="{Binding NavigationParameter}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:HyperlinkItemModel}">
+        <dxwui:HamburgerMenuHyperlinkButton Content="{Binding LinkHeader}"
+                                            Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgetMenuItemPlacementConverter}}"
+                                            NavigateUri="{Binding Link}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:SubMenuNavigationItemModel}">
+        <dxwui:HamburgerSubMenuNavigationButton Content="{Binding Content}"
+                                                IsSelected="{Binding IsSelected}"
+                                                SelectOnClick="{Binding SelectOnClick}"
+                                                ShowInPreview="{Binding ShowInPreview}"
+                                                ShowPreviewMark="{Binding ShowMark}"
+                                                PreviewContent="{Binding PreviewContent}"
+                                                RightContent="{Binding RightContent}"
+                                                NavigationTargetType="{Binding NavigationTarget}"
+                                                NavigationTargetParameter="{Binding NavigationParameter}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:SubMenuItemModel}">
+        <dxwui:HamburgerSubMenu Content="{Binding Content}"
+                                Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgetMenuItemPlacementConverter}}"
+                                IsStandaloneSelectionItemMode="{Binding IsStandaloneSelection}"
+                                Glyph="{Binding Glyph}"
+                                ItemsSource="{Binding Items}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:SeparatorItem}">
+        <dxwui:HamburgerMenuItemSeparator Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgetMenuItemPlacementConverter}}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:BottomBarNavigationItemModel}">
+        <dxwui:HamburgerMenuBottomBarNavigationButton Glyph="{Binding Glyph}"
+                                                      NavigationTargetTypeName="{Binding NavigationTargetName}"
+                                                      NavigationTargetType="{Binding NavigationTarget}"
+                                                      NavigationTargetParameter="{Binding NavigationParameter}"
+                                                      Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgerMenuBottomBarItemPlacementConverter}}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:BottomBarCheckableItemModel}">
+        <dxwui:HamburgerMenuBottomBarCheckBox Glyph="{Binding Glyph}" 
+                                              IsChecked="{Binding IsChecked}"
+                                              Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgerMenuBottomBarItemPlacementConverter}}"/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:BottomBarRadioItemModel}">
+        <dxwui:HamburgerMenuBottomBarRadioButton Glyph="{Binding Glyph}"
+                                                 GroupName="{Binding GroupName}"
+                                                 IsChecked="{Binding IsChecked}"
+                                                 Placement="{Binding IsAlternatePlacementItem, Converter={StaticResource BooleanToHamburgerMenuBottomBarItemPlacementConverter}}"/>
+    </DataTemplate>
+</ResourceDictionary>

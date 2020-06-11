@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="MEDIDEA.UI.Customer.CustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MEDIDEA.UI.Customer"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:entities="clr-namespace:MEDIDEA.Domain.Entities;assembly=MEDIDEA.Domain"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Name="customerView">
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutItem Visibility="{Binding Item.Id, Converter={dxmvvm:NumericToVisibilityConverter}, FallbackValue=Collapsed}" 
+                             Label="Created" >
+            <dxe:TextEdit EditValue="{Binding Item.CreationTime, Mode=OneWay}" IsReadOnly="True" 
+                              Mask="dd.MM.yyyy" MaskUseAsDisplayFormat="True" />
+        </dxlc:LayoutItem>
+        <dxlc:DataLayoutItem Label="Full name" IsRequired="True">
+            <dxe:TextEdit EditValue="{Binding Item.Name, Mode=TwoWay}"  />
+        </dxlc:DataLayoutItem>
+        <dxlc:LayoutItem Label="Address" >
+            <dxe:TextEdit EditValue="{Binding Item.Address, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Birthday" >
+            <dxe:DateEdit EditValue="{Binding Item.Birthday, Mode=TwoWay}" Mask="dd.MM.yyyy"
+                          MaskType="DateTime" MaskUseAsDisplayFormat="True" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Gender" IsRequired="True" >
+            <dxe:ComboBoxEdit ItemsSource="{dxe:EnumItemsSource EnumType=entities:Gender}"
+                              EditValue="{Binding Item.Gender, Mode=TwoWay}" >
+            </dxe:ComboBoxEdit>
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem HorizontalAlignment="Left">
+            <local:PhoneListView dxmvvm:ViewModelExtensions.ParentViewModel="{Binding DataContext, ElementName=customerView}" 
+                                 dxmvvm:ViewModelExtensions.Parameter="{Binding DataContext.Item.Id, ElementName=customerView}" />
+        </dxlc:LayoutItem>
+    </dxlc:LayoutControl>
+</UserControl>

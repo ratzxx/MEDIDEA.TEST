@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1444A2E-7231-454D-B727-2A20E1F820D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MEDIDEA.Domain</RootNamespace>
+    <AssemblyName>MEDIDEA.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Auditing\CreationAuditedEntity.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Auditing\IAudited.cs" />
+    <Compile Include="Entities\Auditing\ICreationAudited.cs" />
+    <Compile Include="Entities\Auditing\IDeletionAudited.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="Entities\Auditing\IFullAudited.cs" />
+    <Compile Include="Entities\Auditing\IHasCreationTime.cs" />
+    <Compile Include="Entities\Auditing\IHasDeletionTime.cs" />
+    <Compile Include="Entities\Auditing\IHasModificationTime.cs" />
+    <Compile Include="Entities\Auditing\IModificationAudited.cs" />
+    <Compile Include="Entities\ISoftDelete.cs" />
+    <Compile Include="Entities\Phone.cs" />
+    <Compile Include="Entities\Visit.cs" />
+    <Compile Include="ICustomerRepository.cs" />
+    <Compile Include="IPhoneRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IVisitRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MEDIDEA.Core\MEDIDEA.Core.csproj">
+      <Project>{b75c841f-f0ea-47cf-8d99-ab56363f1424}</Project>
+      <Name>MEDIDEA.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

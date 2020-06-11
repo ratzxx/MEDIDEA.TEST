@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="MEDIDEA.UI.Customer.CustomerSelectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MEDIDEA.UI.Customer"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" Loaded="{DXEvent OnLoaded()}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <dxmvvm:Interaction.Behaviors>
+        <dx:DialogService DialogWindowStartupLocation="CenterOwner">
+            <dx:DialogService.ViewTemplate>
+                <DataTemplate>
+                    <local:CustomerView />
+                </DataTemplate>
+            </dx:DialogService.ViewTemplate>
+            <dx:DialogService.DialogStyle>
+                <Style TargetType="dx:DXDialogWindow">
+                    <Setter Property="Width" Value="345"/>
+                    <Setter Property="Height" Value="324"/>
+                </Style>
+            </dx:DialogService.DialogStyle>
+        </dx:DialogService>
+    </dxmvvm:Interaction.Behaviors>
+
+    <dxg:LookUpEdit Name="lookUpEdit1" ItemsSource="{Binding Path=Items}" 
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    VerticalAlignment="Center"
+                    DisplayMember="Name"
+                    ValueMember="Id" 
+                    AddNewButtonPlacement="EditBox"
+                    AutoComplete="True"
+                    IncrementalFiltering="True"
+                    AutoPopulateColumns="True"
+                    ImmediatePopup="True"
+                    IsPopupAutoWidth="False">
+        <dxmvvm:Interaction.Triggers>
+            <dxmvvm:EventToCommand PassEventArgsToCommand="True" Command="{Binding ShowCustomerFormCommand}"
+                                   EventName="ProcessNewValue" SourceName="lookUpEdit1">
+            </dxmvvm:EventToCommand>
+        </dxmvvm:Interaction.Triggers>
+    </dxg:LookUpEdit>
+</UserControl>
